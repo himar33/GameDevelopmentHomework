@@ -1,123 +1,87 @@
-#include <iostream>
-#include <math.h>
-#include <vector>
-
-template < class T >
-class vec3 {
-
-public:
-
-
-	T x, y, z;
-	vec3() { x = y = z = 0; };
-
-	vec3(T xV, T yV, T zV) {
-
-		x = xV;
-		y = yV;
-		z = zV;
-
-	}
-
-	~vec3() {
-
-	}
-
-	void Zero() { x = y = z = 0; }
-
-	void Normalize() {
-
-		T module;
-
-		module = sqrt((x * x) + (y * y) + (z * z));
-		
-		if (module != 0)
-		{
-			x /= module;
-			y /= module;
-			z /= module;
-		}
-	}
-
-	bool IsZero() {
-		if (x == 0 && y == 0 && z == 0)
-		{
-			return true;
-		}
-		else { return false; }
-	}
-
-	float DistanceTo(const vec3& vec1, const vec3& vec2) {
-		T dx = vec2.x - vec1.x;
-		T dy = vec2.y - vec1.y;
-		T dz = vec2.z - vec1.z;
-
-		return sqrt((dx * dx) + (dy * dy) + (dz * dz));
-	}
-
-	vec3 operator+(const vec3& vector) const
-	{
-		return vec3(x + vector.x, y + vector.y, z + vector.z);
-	}
-
-	vec3 operator+=(const vec3& vector)
-	{
-		x += vector.x;
-		y += vector.y;
-		z += vector.z;
-	}
-
-	vec3 operator-(const vec3& vector) const
-	{
-		return Vec3(x - vector.x, y - vector.y, z - vector.z);
-	}
-
-	vec3 operator-=(const vec3& vector)
-	{
-		x -= vector.x;
-		y -= vector.y;
-		z -= vector.z;
-	}
-
-	vec3 operator=(const vec3& vector)
-	{
-		return vec3(x = vector.x, y = vector.y, z = vector.z);
-	}
-
-	vec3 operator==(const vec3& vector)
-	{
-		if (x == vector.x && y == vector.y && z = vector.z)
-		{
-			return true;
-		}
-		else { return false;  }
-	}
-};
+#include "functions.h"
+#include <stdlib.h>
+using namespace std;
 
 int main()
 {
 
-	vec3<float> vec = { 10, 10, 5 };
+	vec3<float> vec1 = { 2, 3, 4 };
+	vec3<float> vec2;
+	int option, vecOpt;
 
-	printf("%.2f %.2f %.2f \n", vec.x, vec.y, vec.z);
+	do {
+		system("cls");
+		cout << "What do you want to do?" << endl;
+		cout << "1. Set vector to zero" << endl << "2. Normalize" << endl << "3. Prove if vector is null" << endl << "4. Distance between 2 vectors" << endl << "5. Set vector" << endl << "6. Exit" << endl;
+		do
+		{
+			cout << "Choose a number: ";
+			scanf_s("%d", &option);
 
-	vec.Normalize();
-	printf("%.2f %.2f %.2f \n", vec.x, vec.y, vec.z);
+		} while (option < 1 || option > 6);
+		switch (option)
+		{
+		case 1:
+			system("cls");
+			cout << "What vector?" << endl << "1. Vec1(" << vec1.x << ", " << vec1.y << ", " << vec1.z << ")" << endl;
+			cout << "2. Vec2(" << vec2.x << ", " << vec2.y << ", " << vec2.z << ")" << endl;
+			scanf_s("%d", &vecOpt);
+			if (vecOpt == 1)
+			{
+				if (vec1.IsZero() == true)
+				{
+					cout << "This vector is actually null" << endl;
+					system("pause");
+				}
+				else
+				{
+					vec1.Zero();
+					cout << "Vec1(" << vec1.x << ", " << vec1.y << ", " << vec1.z << ")" << endl;
+					system("pause");
+				}
+			}
+			else if (vecOpt == 2)
+			{
+				if (vec2.IsZero() == true)
+				{
+					cout << "This vector is actually null" << endl;
+					system("pause");
+				}
+				else
+				{
+					vec2.Zero();
+					cout << "Vec2(" << vec2.x << ", " << vec2.y << ", " << vec2.z << ")" << endl;
+					system("pause");
+				}
+			}
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		default:
+			break;
+		}
 
-	vec.Zero();
-	printf("%.2f %.2f %.2f \n", vec.x, vec.y, vec.z);
+	} while (option != 6);
 
-	if (vec.IsZero() == true)
+	/*printf("%.2f %.2f %.2f \n", vec1.x, vec1.y, vec1.z);
+
+	vec1.Normalize();
+	printf("%.2f %.2f %.2f \n", vec1.x, vec1.y, vec1.z);
+
+	if (vec1.IsZero() == true)
 	{
 		printf("The vector is null\n");
 	}
 	else
 	{
 		printf("The vector isn't null\n");
-	}
+	}*/
 
-
-
-	system("pause");
 	return 0;
 }
